@@ -1,11 +1,16 @@
 package com.example.blood.DatabaseObjects;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+
 
 @Entity
-@Table
+@Table(name = "DetailsOfUsers")
 public class Register {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     String name;
     String bloodGroup;
     String state;
@@ -15,7 +20,7 @@ public class Register {
     String email;
     String password;
 
-
+    public Register(){}
     public Register(String name, String bloodGroup, String state, String city, long zip, String phoneNumber, String email, String password) {
         this.name = name;
         this.bloodGroup = bloodGroup;

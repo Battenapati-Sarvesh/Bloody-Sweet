@@ -12,7 +12,6 @@ public class BloodySweetApplication {
 		SpringApplication.run(BloodySweetApplication.class, args);
 
 
-
 	}
 
 }
