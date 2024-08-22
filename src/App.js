@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+
 import './App.css';
+import Login  from './login';
+import Register from './register'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  var LoggedIn = false;
+  var registered = false;
+
+  if(!registered){
+    return <Register/>
+  }
+
+  if(!LoggedIn){
+    return <Login/>
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <>
+    <div className="head">
+     BLOODY <span id='h12'>SWEET</span>
     </div>
+   
+         <div>
+         <Login />
+         Not a registered user ?? 
+         <Register/>
+       </div>
+    
+   
+    </>
+
+
   );
 }
 

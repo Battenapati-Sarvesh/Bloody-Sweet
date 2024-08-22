@@ -1,38 +1,81 @@
-.App {
+.head{
   text-align: center;
+  font-family: cursive;
+  font-size: larger;
+  padding-top: 5%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#h12{
+  
+  color: red;
 }
+.login{
+  margin: 5% 30% 10% 30%;
+  text-align: center;
+  background-color: lightgrey;
+  padding-bottom: 5%;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  padding: 10%;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+
+}
+#email{
+   
+  
+}
+#password{
+    
+    
+}
+.head2{
+  text-align: center;
+  font-family: cursive;
+  font-size: larger;
+  
+  
+  
+}
+#h{
+  color: red;
 }
 
-.App-link {
-  color: #61dafb;
+#registerH{
+  padding-left: 10%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#RegisterForm{
+  align-items: center;
+  background-color: gray;
+  padding-left: 10%;
+  align-items:center;
+  align-content: space-evenly;
+  padding-bottom: 2%;
+}
+.form-row{
+  width: 70%;
+  padding-top: 2%;
+  
+
+}
+.form-groupBG{
+  padding-top: 2%;
+}
+.form-groupstate{
+  padding-top: 2%;
+}
+.form-groupcity{
+  padding-top: 2%;
+}
+.form-groupzip{
+  padding-top: 2%;
+}
+.form-groupPH{
+  padding-top: 2%;
+}
+.form-groupemail{
+  padding-top: 2%;
+}
+.form-grouppassword{
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
