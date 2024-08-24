@@ -1,6 +1,5 @@
 package com.example.blood.Controller;
-import com.example.blood.DatabaseObjects.Register;
-import com.example.blood.Service.RegisterService;
+import com.example.blood.Models.Register;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -22,6 +21,5 @@ public class RegisterController {
 
 
     }
-
 
 }

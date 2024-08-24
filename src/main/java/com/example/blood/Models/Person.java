@@ -1,4 +1,4 @@
-package com.example.blood.DatabaseObjects;
+package com.example.blood.Models;
 
 
 import jakarta.persistence.*;

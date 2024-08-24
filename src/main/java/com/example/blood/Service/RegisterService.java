@@ -1,7 +1,7 @@
 package com.example.blood.Service;
 
-import com.example.blood.DatabaseObjects.Person;
-import com.example.blood.DatabaseObjects.Register;
+import com.example.blood.Models.Person;
+import com.example.blood.Models.Register;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
