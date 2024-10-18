@@ -1,4 +1,5 @@
 package com.example.blood.Controller;
+import com.example.blood.Models.GetDonors;
 import com.example.blood.Models.Register;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -14,9 +15,20 @@ public class RegisterController {
     private static final EntityManager em = emf.createEntityManager();
     @PostMapping("/DonorDetails")
     public String Save(@RequestBody Register r){
+
+        GetDonors obj = new GetDonors();
+
+        obj.setName(r.getName());
+        obj.setBloodGroup(r.getBloodGroup());
+        obj.setCity(r.getCity());
+        obj.setZip(r.getZip());
+        obj.setState(r.getState());
+
         em.getTransaction().begin();
         em.persist(r);
+        em.persist(obj);
         em.getTransaction().commit();
+
         return "Saved the data";
 
 

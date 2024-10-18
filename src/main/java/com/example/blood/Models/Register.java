@@ -11,6 +11,7 @@ public class Register {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    //MultipartFile image;
     String name;
     String bloodGroup;
     String state;
@@ -21,7 +22,8 @@ public class Register {
     String password;
 
     public Register(){}
-    public Register(String name, String bloodGroup, String state, String city, long zip, String phoneNumber, String email, String password) {
+    public Register( String name, String bloodGroup, String state, String city, long zip, String phoneNumber, String email, String password) {
+       // this.image = image;
         this.name = name;
         this.bloodGroup = bloodGroup;
         this.state = state;
@@ -31,6 +33,9 @@ public class Register {
         this.email = email;
         this.password = password;
     }
+
+
+
 
     public String getName() {
         return name;

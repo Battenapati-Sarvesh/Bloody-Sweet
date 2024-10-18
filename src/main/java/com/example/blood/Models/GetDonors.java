@@ -1,27 +1,18 @@
 package com.example.blood.Models;
 
-
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "BloodDonors")
-public class Person {
+@Table
+public class GetDonors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String bloodGroup;
-    private String location;
-
-    public Person(int id, String name, String bloodGroup, String location) {
-        this.id = id;
-        this.name = name;
-
-        this.bloodGroup = bloodGroup;
-        this.location = location;
-    }
-    public Person(){}
-
+    private String state;
+    private String city;
+    private long zip;
 
     public int getId() {
         return id;
@@ -39,7 +30,6 @@ public class Person {
         this.name = name;
     }
 
-
     public String getBloodGroup() {
         return bloodGroup;
     }
@@ -48,11 +38,27 @@ public class Person {
         this.bloodGroup = bloodGroup;
     }
 
-    public String getLocation() {
-        return location;
+    public String getCity() {
+        return city;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public long getZip() {
+        return zip;
+    }
+
+    public void setZip(long zip) {
+        this.zip = zip;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

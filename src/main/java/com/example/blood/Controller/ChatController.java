@@ -1,5 +1,4 @@
 package com.example.blood.Controller;
 
-public class GetDonors {
-
+public class ChatController {
 }
