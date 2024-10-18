@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://localhost:8080/register', // Adjust to your backend URL
+  baseURL: 'http://192.168.0.10:8080', // Adjust to your backend URL
   timeout: 1000,
   headers: { 'Content-Type': 'application/json' }
 });

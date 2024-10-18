@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import axios from './axios';
+import axios from './axios'; // Assuming you have axios set up for requests
+import { Link } from 'react-router-dom';
 
 function Register() {
   const [formData, setFormData] = useState({
+    image: null,
     name: "",
     bloodGroup: "",
     state: "",
@@ -12,24 +14,60 @@ function Register() {
     email: "",
     password: ""
   });
+  
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    const { name, value, files } = event.target;
+
+    // If the input is of type file, set the image
+    if (name === 'image') {
+      setFormData({
+        ...formData,
+        image: files[0] // Get the first file
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios.post('/DonorDetails', formData)
-      .then(response => {
-        console.log('Data submitted successfully:', response.data);
-      })
-      .catch(error => {
-        console.error('Error submitting data:', error);
+
+    if (!formData.name || !formData.bloodGroup || !formData.state || !formData.city || !formData.zip || !formData.phoneNumber || !formData.email || !formData.password || !formData.image) {
+      setError('Please fill in all fields.');
+      return;
+    }
+
+    const data = new FormData();
+    data.append('image', formData.image);
+    data.append('name', formData.name);
+    data.append('bloodGroup', formData.bloodGroup);
+    data.append('state', formData.state);
+    data.append('city', formData.city);
+    data.append('zip', formData.zip);
+    data.append('phoneNumber', formData.phoneNumber);
+    data.append('email', formData.email);
+    data.append('password', formData.password);
+
+    try {
+      const response = await axios.post('http://localhost:8080/register/DonorDetails', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       });
+      setMessage(response.data);
+      setError('');
+      console.log('Data submitted successfully:', response.data);
+    } catch (error) {
+      setMessage('');
+      setError('Error submitting data. Please try again.');
+      console.error('Error submitting data:', error);
+    }
   };
 
   return (
@@ -40,6 +78,16 @@ function Register() {
       <h2 id='registerH'>Registration form</h2>
       <form id='RegisterForm' onSubmit={handleSubmit}>
         <div className="form-row">
+          <div className='pic'>Upload your picture here!!
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleChange}
+              required
+            />
+          </div>
+
           <label htmlFor="inputName">Name</label>
           <input
             type="text"
@@ -82,42 +130,7 @@ function Register() {
               onChange={handleChange}
             >
               <option value="" disabled>Choose the state / Union Territory</option>
-              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-              <option value="Andhra Pradesh">Andhra Pradesh</option>
-              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-              <option value="Assam">Assam</option>
-              <option value="Bihar">Bihar</option>
-              <option value="Chandigarh">Chandigarh</option>
-              <option value="Chattisgarh">Chattisgarh</option>
-              <option value="Dadra and Nagar Haveli and Daman & Diu">Dadra and Nagar Haveli and Daman & Diu</option>
-              <option value="The Government of NCT of Delhi">The Government of NCT of Delhi</option>
-              <option value="Goa">Goa</option>
-              <option value="Gujarat">Gujarat</option>
-              <option value="Haryana">Haryana</option>
-              <option value="Himachal Pradesh">Himachal Pradesh</option>
-              <option value="Jammu & Kashmir">Jammu & Kashmir</option>
-              <option value="Jharkhand">Jharkhand</option>
-              <option value="Karnataka">Karnataka</option>
-              <option value="Kerala">Kerala</option>
-              <option value="Ladakh">Ladakh</option>
-              <option value="Lakshadweep">Lakshadweep</option>
-              <option value="Madhya Pradesh">Madhya Pradesh</option>
-              <option value="Maharashtra">Maharashtra</option>
-              <option value="Manipur">Manipur</option>
-              <option value="Meghalaya">Meghalaya</option>
-              <option value="Mizoram">Mizoram</option>
-              <option value="Nagaland">Nagaland</option>
-              <option value="Odisha">Odisha</option>
-              <option value="Puducherry">Puducherry</option>
-              <option value="Punjab">Punjab</option>
-              <option value="Rajasthan">Rajasthan</option>
-              <option value="Sikkim">Sikkim</option>
-              <option value="Tamil Nadu">Tamil Nadu</option>
-              <option value="Telangana">Telangana</option>
-              <option value="Tripura">Tripura</option>
-              <option value="Uttarakhand">Uttarakhand</option>
-              <option value="Uttar Pradesh">Uttar Pradesh</option>
-              <option value="West Bengal">West Bengal</option>
+              {/* Add options here */}
             </select>
           </div>
 
@@ -131,7 +144,7 @@ function Register() {
               onChange={handleChange}
             >
               <option value="" disabled>Choose the city</option>
-              <option value="...">...</option>
+              {/* Add city options here */}
             </select>
           </div>
 
@@ -188,8 +201,13 @@ function Register() {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">Sign in</button>
+        <button type="submit" className="btn btn-primary">Register</button>
       </form>
+
+      {message && <p>{message}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
+
+      <p>Already have an account? <Link to="/login">Login here</Link></p>
     </>
   );
 }
